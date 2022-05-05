@@ -43,11 +43,20 @@ class AuthController extends Controller
 
         $cookie = cookie("jwt", $jwtToken, 60 * 24);
 
-        return response()->json([], 200)->withCookie($cookie);
+        return response()->withCookie($cookie);
     }
 
     public function user(Request $request)
     {
         return $request->user();
+    }
+
+    public function logout(Request $request)
+    {
+        $cookie = \Cookie::forget("jwt");
+
+        return response([
+            "message" => "success"
+        ])->withCookie($cookie);
     }
 }
