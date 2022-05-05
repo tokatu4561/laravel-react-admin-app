@@ -39,11 +39,11 @@ class AuthController extends Controller
         /** @var User $user */
         $user = Auth::user();
 
-        $token = $user->createToken("token")->plainTextToken;
+        $jwtToken = $user->createToken("token")->plainTextToken;
 
-        return response()->json([
-            "jwt" => $token
-        ], 200);
+        $cookie = cookie("jwt", $jwtToken, 60 * 24);
+
+        return response()->json([], 200)->withCookie($cookie);
     }
 
     public function user(Request $request)
