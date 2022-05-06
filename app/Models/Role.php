@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
+
+    protected $gurded = [];
+
+    public function role()
+    {
+        return $this->hasMany(User::class);
+    }
 }
