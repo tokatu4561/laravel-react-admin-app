@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::paginate();
+        return UserResource::collection(User::with('role')->paginate());
     }
 
     /**
@@ -34,7 +35,7 @@ class UserController extends Controller
                 + ["password" => Hash::make(1234)]
         );
 
-        return response($user, Response::HTTP_CREATED);
+        return response(new UserResource($user), Response::HTTP_CREATED);
     }
 
     /**
@@ -71,7 +72,7 @@ class UserController extends Controller
             $user->email = $request->email;
         }
 
-        return response($user, Response::HTTP_ACCEPTED);
+        return response(new UserResource($user), Response::HTTP_ACCEPTED);
     }
 
     /**
