@@ -17,8 +17,10 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $role = Role::create([
-            "name" => $request->string,
+            "name" => $request->name,
         ]);
+
+        $role->permissions()->sync($request->input('permissions'));
 
         return response(new RoleResource($role->load('permissions')), Response::HTTP_CREATED);
     }
@@ -42,6 +44,8 @@ class RoleController extends Controller
         if ($request->filled("name")) {
             $role->name = $request->name;
         }
+
+        $role->permissions()->sync($request->input('permissions'));
 
         return response(new RoleResource($role->load('permissions')), Response::HTTP_ACCEPTED);
     }

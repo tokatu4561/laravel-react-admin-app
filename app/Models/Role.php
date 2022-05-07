@@ -11,8 +11,15 @@ class Role extends Model
 
     protected $gurded = [];
 
-    public function role()
+    public $timestamps = false;
+
+    public function users()
     {
         return $this->hasMany(User::class);
+    }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'role_permissions');
     }
 }
