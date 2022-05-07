@@ -19,7 +19,7 @@ class ImageController extends Controller
         $url = \Storage::putFileAs("images", $file, $name . "." . $file->extension());
 
         return [
-            "url" => public_path() . "/" . $url,
+            "url" => base_path() . "/" . $url,
         ];
     }
 }
