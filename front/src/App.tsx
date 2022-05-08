@@ -3,6 +3,7 @@ import { SideMenu } from "./components/layout/SideMenu";
 import { Route } from "react-router-dom";
 import Dashbord from "./pages/Dashbord";
 import Users from "./pages/Users";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
       </Route>
       <Route path={"/users"}>
         <Users />
+      </Route>
+      <Route path={"/register"}>
+        <Register />
       </Route>
     </>
   );

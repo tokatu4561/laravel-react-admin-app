@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { SyntheticEvent } from "react";
 
 import { useInput } from "../hooks/use-input";
@@ -15,8 +16,18 @@ const Register = () => {
   const { value: passwordValue, valueChangeHandler: onChangePassword } =
     useInput((value: string) => value.trim() === "");
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
+
+    const response = await axios.post("http://localhost:8000/api/register", {
+      first_name: firstNameValue,
+      last_name: lastNameValue,
+      email: emailValue,
+      password: passwordValue,
+      password_confirm: passwordValue,
+    });
+
+    console.log(response);
   };
 
   return (
@@ -63,7 +74,6 @@ const Register = () => {
           className="form-control"
           placeholder="Password Confirm"
           required
-          onChange={(e) => (this.password_confirm = e.target.value)}
         />
 
         <button className="w-100 btn btn-lg btn-primary" type="submit">

@@ -1,12 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Layout } from "../components/layout/Layout";
 
 const Users = () => {
   return (
-    <div>
+    <Layout>
       <div className="pt-3 pb-2 mb-3 border-bottom">
-        <link href="/users/create" className="btn btn-sm btn-outline-secondary">
+        <Link to="/users/create" className="btn btn-sm btn-outline-secondary">
           Add
-        </link>
+        </Link>
       </div>
 
       <div className="table-responsive">
@@ -23,7 +25,7 @@ const Users = () => {
           <tbody></tbody>
         </table>
       </div>
-    </div>
+    </Layout>
   );
 };
 
