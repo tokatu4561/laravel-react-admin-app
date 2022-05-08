@@ -28,7 +28,7 @@ const inputStateReducer = (state: inputStateType, action: actionType) => {
   }
 };
 
-const useInput = (validateValue: (value: string) => {}) => {
+export const useInput = (validateValue: (value: string) => {}) => {
   const [inputState, dispatch] = useReducer(
     inputStateReducer,
     initialInputState
