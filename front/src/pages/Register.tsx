@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { SyntheticEvent } from "react";
+import { useHistory } from "react-router";
 
 import { useInput } from "../hooks/use-input";
 import "../Login.css";
 
 const Register = () => {
+  const history = useHistory();
   const { value: firstNameValue, valueChangeHandler: firstNameChange } =
     useInput((value: string) => value.trim() === "");
   const { value: lastNameValue, valueChangeHandler: lastNameChange } = useInput(
@@ -19,15 +21,17 @@ const Register = () => {
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
-    const response = await axios.post("http://localhost:8000/api/register", {
-      first_name: firstNameValue,
-      last_name: lastNameValue,
-      email: emailValue,
-      password: passwordValue,
-      password_confirm: passwordValue,
-    });
+    try {
+      const response = await axios.post("http://localhost:8000/api/register", {
+        first_name: firstNameValue,
+        last_name: lastNameValue,
+        email: emailValue,
+        password: passwordValue,
+        password_confirm: passwordValue,
+      });
 
-    console.log(response);
+      await history.push("/login");
+    } catch (error) {}
   };
 
   return (

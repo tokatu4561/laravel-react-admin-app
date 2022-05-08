@@ -17,6 +17,9 @@ function App() {
       <Route path={"/register"}>
         <Register />
       </Route>
+      <Route path={"/login"}>
+        <Register />
+      </Route>
     </>
   );
 }
