@@ -20,10 +20,11 @@ class AuthController extends Controller
                 'last_name' => $request->last_name,
                 'email' => $request->first_name,
                 'password' => Hash::make($request->first_name),
+                'role_id' => 1
             ]
         );
 
-        return response()->json($user, Response::HTTP_CREATED);
+        return response(new UserResource($user), Response::HTTP_CREATED);
     }
 
     //
