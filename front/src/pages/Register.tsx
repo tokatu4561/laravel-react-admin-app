@@ -22,7 +22,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8000/api/register", {
+      const response = await axios.post("/register", {
         first_name: firstNameValue,
         last_name: lastNameValue,
         email: emailValue,
