@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import UserCreate from "./pages/users/UserCreate";
 import UserEdit from "./pages/users/UserEdit";
+import RolesPage from "./pages/roles/Roles";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
         <UserEdit />
       </Route>
       <Route path={"/roles"}>
-        <UserEdit />
+        <RolesPage />
       </Route>
     </>
   );
