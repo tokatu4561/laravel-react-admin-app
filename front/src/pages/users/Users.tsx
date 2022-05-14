@@ -73,6 +73,12 @@ const Users = () => {
                 <th>{user.role.name}</th>
                 <th>
                   <div>
+                    <Link
+                      to={`/users/${user.id}/edit`}
+                      className="btn btn-sm btn-outline-secondary"
+                    >
+                      Edit
+                    </Link>
                     <a
                       href="#"
                       className="btn btn-sm btn-outline-secondary"
