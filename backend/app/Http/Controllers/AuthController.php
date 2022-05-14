@@ -18,8 +18,8 @@ class AuthController extends Controller
             [
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
-                'email' => $request->first_name,
-                'password' => Hash::make($request->first_name),
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
                 'role_id' => 1
             ]
         );
@@ -30,12 +30,11 @@ class AuthController extends Controller
     //
     public function login(Request $request)
     {
-        if (!Auth::attempt($request->only("email", "password"))) {
-            $request->session()->regenerate();
 
-            $errorMessage = ["error" => "入力値が不正です"];
-
-            return response()->json($errorMessage, Response::HTTP_UNAUTHORIZED);
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return \response([
+                'error' => 'Invalid credentials!'
+            ], Response::HTTP_UNAUTHORIZED);
         }
 
         /** @var User $user */
@@ -45,7 +44,9 @@ class AuthController extends Controller
 
         $cookie = cookie("jwt", $jwtToken, 60 * 24);
 
-        return response()->withCookie($cookie);
+        return \response([
+            'jwt' => $jwtToken
+        ])->withCookie($cookie);
     }
 
     public function user(Request $request)
