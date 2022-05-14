@@ -28,4 +28,37 @@ class OrderController extends Controller
         $order = Order::with("orderItems")->find($id);
         return new OrderResource($order);
     }
+
+    /**
+     * CSVエクスポート
+     */
+    public function export()
+    {
+        $header = [
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=order.csv",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0",
+        ];
+
+        $callback = function () {
+            $orders = Order::all();
+            $file = fopen('php://output', 'w');
+
+            fputcsv($file, ["ID", "Name", "Email", "Product Title", "Price", "Quantity"]);
+
+            foreach ($orders as $order) {
+                fputcsv($file, [$order->id, $order->name, $order->email, "", "", ""]);
+
+                foreach ($order->orderItems as $orderItem) {
+                    fputcsv($file, ["", "", "", $order->product_title, $order->price, $order->quantity]);
+                }
+            }
+
+            fclose($file);
+        };
+
+        return \Response::stream($callback, 200, $header);
+    }
 }
