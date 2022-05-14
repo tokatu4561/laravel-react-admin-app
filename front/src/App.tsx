@@ -27,6 +27,9 @@ function App() {
       <Route path={"/users/:id/edit"}>
         <UserEdit />
       </Route>
+      <Route path={"/roles"}>
+        <UserEdit />
+      </Route>
     </>
   );
 }
