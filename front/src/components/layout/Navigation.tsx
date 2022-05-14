@@ -12,7 +12,7 @@ export const Navigation = () => {
         withCredentials: true,
       });
 
-      const user = response.data;
+      const user = response.data.data;
 
       setUser(user);
     };
