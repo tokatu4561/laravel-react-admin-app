@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import UserCreate from "./pages/users/UserCreate";
 import UserEdit from "./pages/users/UserEdit";
 import RolesPage from "./pages/roles/Roles";
+import ProductListPage from "./pages/products/ProductList";
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
       </Route>
       <Route path={"/roles"}>
         <RolesPage />
+      </Route>
+      <Route path={"/products"}>
+        <ProductListPage />
       </Route>
     </>
   );
