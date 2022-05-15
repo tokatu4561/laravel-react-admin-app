@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "../../components/layout/Layout";
+import { Paginater } from "../../components/Paginater";
 import { User } from "../../types/user";
 
 const Users = () => {
@@ -17,18 +18,6 @@ const Users = () => {
       setLastPage(usersData.meta.last_page);
     })();
   }, [currentPage]);
-
-  const onNext = () => {
-    if (currentPage < lastPage) {
-      setCurrentPage((page) => page + 1);
-    }
-  };
-
-  const onPrev = () => {
-    if (currentPage >= 1) {
-      setCurrentPage((page) => page - 1);
-    }
-  };
 
   const handleDelUser = async (id: number) => {
     if (window.confirm("本当に削除しますか？")) {
@@ -96,20 +85,11 @@ const Users = () => {
         </table>
       </div>
 
-      <nav>
-        <ul className="pagination">
-          <li className="page-item">
-            <a href="#" className="page-link" onClick={onPrev}>
-              Previous
-            </a>
-          </li>
-          <li className="page-item">
-            <a href="#" className="page-link" onClick={onNext}>
-              Next
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <Paginater
+        currentPage={currentPage}
+        lastPage={lastPage}
+        pageChange={setCurrentPage}
+      />
     </Layout>
   );
 };
