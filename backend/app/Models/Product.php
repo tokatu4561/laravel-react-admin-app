@@ -9,5 +9,5 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $gurded = [];
+    protected $fillable = ['title', 'description', 'price', 'image'];
 }

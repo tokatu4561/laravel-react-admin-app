@@ -12,7 +12,7 @@ class ImageController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      */
-    public function store(Request $request)
+    public function upload(Request $request)
     {
         $file = $request->file("image");
         $name = Str::random(10);
