@@ -7,6 +7,7 @@ import UserCreate from "./pages/users/UserCreate";
 import UserEdit from "./pages/users/UserEdit";
 import RolesPage from "./pages/roles/Roles";
 import ProductListPage from "./pages/products/ProductList";
+import ProductCreate from "./pages/products/ProductCreate";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       <Route path={"/login"}>
         <Login />
       </Route>
-      <Route path={"/users"}>
+      <Route path={"/users"} exact>
         <Users />
       </Route>
       <Route path={"/users/create"}>
@@ -32,8 +33,11 @@ function App() {
       <Route path={"/roles"}>
         <RolesPage />
       </Route>
-      <Route path={"/products"}>
+      <Route path={"/products"} exact>
         <ProductListPage />
+      </Route>
+      <Route path={"/products/create"}>
+        <ProductCreate />
       </Route>
     </>
   );
