@@ -43,7 +43,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post("upload", [ImageController::class, "upload"]);
 
-    Route::post("orders", [OrderController::class, "index"]);
+    Route::get("orders", [OrderController::class, "index"]);
     Route::post("orders/{id}", [OrderController::class, "show"]);
     Route::get("orders/export", [OrderController::class, "export"]);
 });
