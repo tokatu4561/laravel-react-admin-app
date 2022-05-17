@@ -6,13 +6,13 @@ import { Layout } from "../../components/layout/Layout";
 import { IRole } from "../../types/role";
 
 const RolesPage = () => {
-  const [roles, setRoles] = useState([]);
+  const [roles, setRoles] = useState<IRole[]>([]);
 
   useEffect(() => {
     (async () => {
       const { data } = await axios.get("roles");
 
-      setRoles(data);
+      setRoles(data.data);
     })();
   }, []);
 
